@@ -16,6 +16,7 @@ import {
 	Tabs,
 	TabPane,
 	Select,
+	DatePicker,
 	Option,
 	OptionGroup,
 	Table,
@@ -35,6 +36,7 @@ Vue.use(MenuItemGroup);
 Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Select);
+Vue.use(DatePicker);
 Vue.use(Option);
 Vue.use(OptionGroup);
 Vue.use(Table);
