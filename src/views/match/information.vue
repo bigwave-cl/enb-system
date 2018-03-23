@@ -87,6 +87,13 @@
 		}
 	}
 
+	.mi-group__title {
+		padding: .18rem .82rem .18rem .28rem;
+		font-size: .18rem;
+		color: map-get($color,300);
+		font-weight: bold;
+		border-bottom: 1px solid map-get($color,200);
+	}
 	.mi-group{
 		width: 100%;
 		@include flexLayout(flex,normal,center);
@@ -120,6 +127,11 @@
 			font-size: .16rem;
 			position: relative;
 			@include flexLayout(flex,normal,center);
+			.tip {
+				position: absolute;
+				color: map-get($color, 300S2);
+				right: .12rem;
+			}
 			.img-box{
 				width: 3.32rem;
 				padding: .95rem 0;
@@ -237,7 +249,7 @@
 							<information-basic ref="infobasic" :model="basicModel"></information-basic>
 						</template>
 						<template v-else-if="menu.type == 'info'">
-							info
+							<information-detail ref="infodetail" :model="detailModel"></information-detail>
 						</template>
 						<template v-else>
 							other
@@ -250,12 +262,14 @@
 </template>
 <script>
 	import InformationBasic from '@core/match/information-basic.vue';
+	import InformationDetail from '@core/match/information-detail.vue';
 	import { MatchApi } from '@/services';
 	import { mapGetters } from 'vuex';
 	export default{
 		name:"MatchInformation",
 		components:{
-			InformationBasic
+			InformationBasic,
+			InformationDetail
 		},
 		computed:{
 			...mapGetters(['matchId'])
@@ -286,11 +300,33 @@
 					"end_longitude":"",
 					"end_latitude":""
 				},
+				detailModel:{
+					"id" : "", 
+	        "competition_id" : "", 
+	        "full_name" : "", 
+	        "host_unit" : "", 
+	        "undertaker" : "", 
+	        "time_str" : "", 
+	        "site" : "", 
+	        "stage_name" : "", 
+	        "full_mileage" : "", 
+	        "stage_mileage" : "", 
+	        "join_start" : "", 
+	        "join_end" : "", 
+	        "join_site" : "", 
+	        "join_way" : "", 
+	        "qq" : "", 
+	        "wx" : "", 
+	        "fax" : "", 
+	        "email" : "", 
+	        "telephone" : ""
+				},
 				infoModel:{}
 			}
 		},
 		mounted(){
 			this.queryDataList();
+			this.queryDataDetail();
 
 		},
 		methods:{
@@ -303,6 +339,21 @@
 						Object.keys(r.data.data.base).forEach((key) => {
 						    this.basicModel[key] = r.data.data.base[key];
 						})
+					}
+				},err=>{
+					this.$store.dispatch('ajaxRequestEnd');
+				})
+			},
+			queryDataDetail(){
+				this.$store.dispatch('ajaxRequestStart');
+				this.matchServer.queryDetailById(this.matchId).then(r=>{
+					this.$store.dispatch('ajaxRequestEnd');
+					if(r.data.code != 200) return;
+					if(r.data.data){
+						Object.keys(r.data.data).forEach((key) => {
+						    this.detailModel[key] = r.data.data[key];
+						})
+						console.log(this.detailModel)
 					}
 				},err=>{
 					this.$store.dispatch('ajaxRequestEnd');

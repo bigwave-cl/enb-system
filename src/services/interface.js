@@ -326,6 +326,13 @@ export class MatchApi extends publicModal{
 		}
 		return this._ajax('post','competition-editor/base-update',option);
 	}
+	queryDetailById(id){
+		let option = {
+			"id": id,
+			...this.default
+		}
+		return this._ajax('post','competition-editor/detail-query',option);
+	}
 }
 /*
 class publicModal{
