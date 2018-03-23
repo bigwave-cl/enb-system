@@ -86,6 +86,135 @@
 			}
 		}
 	}
+
+	.mi-group{
+		width: 100%;
+		@include flexLayout(flex,normal,center);
+		border-bottom: 1px solid map-get($color,200);
+		padding: .18rem .82rem .18rem .28rem;
+		&.is-top{
+			align-items: flex-start;
+		}
+		.label{
+			width: 1.45rem;
+			flex: 0 0 1.45rem;
+			font-size: .16rem;
+			word-break: break-all;
+			line-height: 1.4;
+			color: map-get($color,300S3);
+			padding-right: .1rem;
+			@include flexLayout(inline-flex, normal, center);
+			i {
+				font: inherit;
+				display: inline-block;
+				width: .2rem;
+				line-height: 1;
+				height: .08rem;
+				text-align: center;
+				color: map-get($color, 600);
+			}
+		}
+		.value{
+			width: calc(100% - 1.45rem);
+			flex: 0 0 calc(100% - 1.45rem);
+			font-size: .16rem;
+			position: relative;
+			@include flexLayout(flex,normal,center);
+			.img-box{
+				width: 3.32rem;
+				padding: .95rem 0;
+				position: relative;
+				&>img{
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					border-radius: .04rem;
+					overflow: hidden;
+				}
+				&.cover{
+					width: 1.32rem;
+					padding: .66rem 0;
+					&>img{
+						border-radius: 50%;
+					}
+				}
+			}
+			.ask-button{
+				min-width: auto;
+				&.upload{
+					width: 1.12rem;
+					height: .42rem;
+					padding: 0;
+					font-size: .18rem;
+					color: map-get($color,100);
+					background: map-get($color,400);
+					border-radius: .04rem;
+					@include flexLayout(inline-flex,center,center);
+					position: absolute;
+					bottom: .16rem;
+					right: 0;
+					z-index: 2;
+					.iconfont{
+						font: inherit;
+						color: inherit;
+						font-size: .24rem;
+						margin-right: .16rem;
+					}
+				}
+			}
+			.mi-input{
+				width: 6.2rem;
+				display: block;
+				border-radius: .04rem;
+				border: 1px solid map-get($color,100D2);
+				margin: 0;
+				background: map-get($color,100S3);
+				padding: .12rem .24rem;
+				font-size: .16rem;
+				color: map-get($color,300);
+				outline: none;
+				@include inputPlaceholder(map-get($color,300S2));
+				transition: background .3s linear;
+				&:focus{
+					background: map-get($color,100);
+					transition: background .3s linear;
+				}
+				&.large{
+					width: 100%;
+				}
+				&.medium{
+					width: 2.88rem;
+				}
+				&.small{
+					width: 1.8rem;
+				}
+				&+.mi-input{
+					margin-left: .28rem;
+				}
+				&.error{
+					border: 1px solid map-get($color,600);
+				}
+			}
+			.text{
+				padding: 0 .12rem;
+				font-size: .16rem;
+				color: map-get($color,300);
+			}
+			.el-input__inner{
+				font-size: .16rem;
+				padding-top: .12rem;
+				padding-bottom: .12rem;
+				width: 2.88rem;
+				height: .44rem;
+			}
+			.el-select .el-input.is-focus .el-input__inner,
+			.el-select .el-input__inner:focus{
+				border-color: map-get($color,100D2);
+			}
+		}
+	}
 </style>
 <template>
 	<div class="match-information">
@@ -111,7 +240,7 @@
 							info
 						</template>
 						<template v-else>
-							<ask-tinymce></ask-tinymce>
+							other
 						</template>
 					</el-tab-pane>
 				</template>

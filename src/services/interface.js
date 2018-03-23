@@ -2,7 +2,7 @@
 * @Author: askMeWhy
 * @Date:   2018-01-15 15:26:22
 * @Last Modified by:   bigWave
-* @Last Modified time: 2018-03-21 16:13:42
+* @Last Modified time: 2018-03-23 11:12:30
 */
 import {
 	ajax,
@@ -49,7 +49,7 @@ export class User{
 			company: opt.company,
 		};
 		this.auth = {
-			token: '5UZTxYfyg2ccyeR-3Sh7gNAheel6lhVUn9IPT9YQZSP8B6ySzQjn_ezqT04V',
+			token: opt.token,
 			type: opt.role_type
 		};
 	}
