@@ -1,0 +1,90 @@
+<template>
+	<div class="infoBody">
+    <!--头部-->
+    <div class="con_head">
+      <div class="mi-group">
+        <div class="label">标签</div>
+        <div class="value">
+          <input v-model="curNum"
+                 class="mi-input medium"
+                 maxlength="10"
+                 name="name"
+                 type="text"
+                 placeholder="输入标签内容"
+                 :class="{'error': errors.has('name')}">
+          <span class="textNum">
+        <span class="curNum">{{10-textNum}}</span>
+      </span>
+        </div>
+      </div>
+      <div class="deleteBtn">删除标签及内容</div>
+    </div>
+    <!--文本框-->
+    <textarea name="content" class="textArea" placeholder="从这里开始写正文"></textarea>
+
+  </div>
+</template>
+<style>
+  .infoBody{
+    margin: 20px 0 0 25px;
+  }
+  .con_head{
+    padding: 0 0 30px 0;
+  }
+  input[name='setTitle']{
+    width: 4rem;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 15px;
+  }
+  input[name='setTitle']::placeholder{
+    font-size: 15px;
+    text-indent: 15px;
+  }
+  .textNum{
+    font-size: 15px;
+  }
+  .deleteBtn{
+    width: 1.7rem;
+    height: 40px;
+    line-height: 42px;
+    border: 1px solid #5584ff;
+    border-radius: 10px;
+    font-size: .18rem;
+    text-align: center;
+    color: #5584ff;
+    position: absolute;
+    right: 5vw;
+    margin-top: -60px;
+  }
+  .textArea{
+    height: 30vw;
+    width: 80vw;
+    resize: none;
+    font-size: 18px;
+    padding: 20px;
+  }
+</style>
+<script>
+  import { askDialogToast } from '@/utils';
+  import { MatchDetailsApi } from '@/services';
+
+	export default {
+		name: "informationOther",
+       //数据
+    data(){
+      return {
+        curNum  : '',
+      }
+    },
+    computed : {
+      textNum(){
+        return this.curNum.length;
+      }
+    },
+    //函数 方法
+    methods:{
+
+    }
+	}
+</script>
